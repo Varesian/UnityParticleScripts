@@ -8,13 +8,17 @@ public class DuringCollisionEmitParticles : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (pe == null) {
-			Debug.LogError("This script needs a reference to a ParticleEmitter object", this);
+			//see if there's a ParticleEmitter attached to the parent
+				Debug.LogError("This script needs a reference to a ParticleEmitter object", this);
 		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	void OnPointCloudCollisionEnter() {
+		pe.emit = true;
+	}
+
+	void OnPointCloudCollisionExit() {
+		pe.emit = false;
 	}
 	
 	void OnMouseOver() {
